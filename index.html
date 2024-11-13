@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./images/JSL Logo.png" type="afbeelding/icoontype">
+    <title>JSL</title>
+</head>
+<body>
+
+<!-- Load JSL library -->
+<SCRIPT src="http://jsl3.codemax.net/lorem.js"></SCRIPT>
+<SCRIPT src="http://jsl3.codemax.net/jsl3.1.js"></SCRIPT>
+
+<script>
+    // Navbar  
+    jsl = NAV({class: 'navbar'},
+        DIV({class: 'navbar-content'},
+            H1('My Website'),  // Website Title
+            INPUT({type: 'text', placeholder: 'Search...'}), // Search Bar
+            BUTTON('Search')
+        ),
+        DIV({class: 'nav-links'},
+            A({href: '#'}, 'Docs'),
+            A({href: '#'}, 'API'),
+            A({href: '#'}, 'Playground'),
+            A({href: 'https://github.com/your-profile', target: '_blank'}, 'GitHub')  // GitHub icon link
+        )
+    );
+
+    // Main content with a logo and two buttons
+    jsl = DIV({class: 'main-content'},
+        IMG({src: './images/JSL Logo.png', alt: 'Logo', class: 'logo'}),  // Logo
+        DIV({class: 'button-container'},
+            BUTTON({class: 'btn-primary', onclick: "window.location.href='docs.html'"}, 'Button 1',), // First Button
+            BUTTON({class: 'btn-secondary', onclick: "window.location.href='docs.html'"}, 'Button 2') // Second Button
+        )
+    );
+
+    // Footer
+    jsl = FOOTER({class: 'footer'},
+        "©2020 Ambianti B.V. ",
+        A({href: 'https://github.com/your-profile', target: '_blank'}, 'GitHub'),
+        A({href: 'https://twitter.com/your-profile', target: '_blank'}, 'Twitter'),
+        A({href: 'https://linkedin.com/in/your-profile', target: '_blank'}, 'LinkedIn')
+    );
+</script>
+
+<style>
+    /* Basic styling for the navbar and main content */
+    body, html {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        font-family: Arial, sans-serif;
+    }
+
+    .navbar {
+        background-color: #333;
+        padding: 1em;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .navbar h1 {
+        margin: 0;
+        font-size: 1.5em;
+    }
+
+    .navbar input {
+        padding: 0.5em;
+        margin-right: 0.5em;
+    }
+
+    .main-content {
+        text-align: center;
+        margin-top: 2em;
+    }
+
+    .logo {
+        width: 150px;
+        height: auto;
+    }
+
+    .button-container {
+        margin-top: 1em;
+    }
+
+    .btn-primary, .btn-secondary {
+        padding: 0.75em 1.5em;
+        margin: 0.5em;
+        font-size: 1em;
+        cursor: pointer;
+        border: none;
+        border-radius: 4px;
+    }
+
+    .btn-primary {
+            background-color: #ED1E79;
+            color: white;
+        }
+
+    .btn-primary:hover {
+        background-color: #881245;
+    }
+
+    .btn-secondary {
+        background-color: #708090;
+        color: white;
+    }
+
+    .btn-secondary:hover {
+        background-color: #47525c;
+    }
+
+    /* Footer styling */
+    .footer {
+        background-color: white;
+        color: #708090;
+        text-align: center;
+        padding: 1em;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+
+    .footer a {
+        color: #708090;
+        margin: 0 10px;
+        text-decoration: none;
+    }
+        
+    .footer a:hover {
+        color: #ED1E79;
+    }
+</style>
+
+</body>
+</html>
