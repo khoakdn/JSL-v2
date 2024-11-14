@@ -1,14 +1,14 @@
 export const TOPIC=()=>[
-    ASIDE(
-        NAV({class: 'sidebar'},
-            H2('Docs'),
-            A({href: '#quick-start'}, 'Quick Start'),
-            A({href: '#installation'}, 'Installation'),
-            A({href: '#basic-syntax'}, 'Basic Syntax'),
-            A({href: '#examples'}, 'Examples'),
-            A({href: '#api'}, 'API Reference')
-        )
-    ), // Main content area with different sections
+    // ASIDE(
+    //     NAV({class: 'sidebar'},
+    //         H2('Docs'),
+    //         A({href: '#quick-start'}, 'Quick Start'),
+    //         A({href: '#installation'}, 'Installation'),
+    //         A({href: '#basic-syntax'}, 'Basic Syntax'),
+    //         A({href: '#examples'}, 'Examples'),
+    //         A({href: '#api'}, 'API Reference')
+    //     )
+    // ), // Main content area with different sections
     SECTION({class: 'content'},
         H1('JSL Documentation'),
         H2({id: 'quick-start'}, 'Quick Start'),

@@ -16,8 +16,8 @@
     // Navbar  
     jsl = NAV({class: 'navbar'},
         DIV({class: 'navbar-content'},
-            H1('My Website'),  // Website Title
-            INPUT({type: 'text', placeholder: 'Search...'}), // Search Bar
+            H1('JSL3'),
+            INPUT({type: 'text', placeholder: 'Search...'}),
             BUTTON('Search')
         ),
         DIV({class: 'nav-links'},
@@ -57,22 +57,38 @@
     }
 
     .navbar {
-        background-color: #333;
+        background-color: white;
         padding: 1em;
-        color: white;
+        color: #708090;
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
 
     .navbar h1 {
-        margin: 0;
-        font-size: 1.5em;
+        position: absolute; 
+        left: 1em;
     }
 
     .navbar input {
         padding: 0.5em;
         margin-right: 0.5em;
+    }
+
+    .navbar-content {
+        display: flex;
+        flex: 1;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .navbar-content .logo {
+        position: absolute; 
+        left: 1em;
+    }
+
+    .nav-links {
+        margin-left: auto; /* Push nav links to the right */
     }
 
     .main-content {

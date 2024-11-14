@@ -1,9 +1,8 @@
 {
-    "intro.js":{
-        "title":"Introduction",
-        "subtopics":{}
+    "gettingstarted.js":{
+        "title":"Getting Started"
     },
-    "dummy.js":{
-        "title":"Dummy"
+    "intro.js":{
+        "title":"Introduction"
     }
 }
