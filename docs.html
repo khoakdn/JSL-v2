@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JSL Documentation</title>
+    <title>JSL Documents</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 
@@ -14,51 +15,124 @@
 <script type="module" defer>
     import {DEFHEADER} from "./header-footer.js";
     const jslHashChange=jsl.eventSource();
+    const boldTitles = ["Getting Started", "Tutorial", "Tag Fuctions", "Insert Modes", "Event Handlers", "Utility Functions", "Model-View Notifications", "Builder Syntax", "Advanced Topics"]; // Add titles to be bolded
+
     window.addEventListener('hashchange',(e)=>{
         jslHashChange(location.hash.substr(1))
     });
 
     'body'.jsl.eof = [ 
         DEFHEADER(BUTTON('XXXXXX')),
-        MENU(
-            jsl.sinkFor(fetch("topics/topics.json").then(res=>res.json()),
-                (source,error,topics)=>
-                jsl.forEach(topics,(topic,lib)=>LI(
-                    A({href:'#'+lib},topic.title)
-                ))      
+        DIV({class: 'content-container'},
+        MENU( {class:'menu'},
+            jsl.sinkFor(fetch("topics/topics.json").then(res => res.json()),
+                (source, error, topics) => {
+                    const topicsList = UL({class:'menu-ui'},
+                jsl.forEach(topics, (topic, lib) => {
+                const topicTitle = boldTitles.includes(topic.title) 
+            ? STRONG(topic.title) 
+            : topic.title;
+        
+            return LI({class: 'menu-li'},
+                A({href: '#' + lib}, topicTitle)
+            );
+            })
+        );
+                    return topicsList; // Return the list of topics
+                }
             )
         ),
-        ARTICLE(
-            jsl.sinkFor(jslHashChange,null,(source,topicid="intro.js")=>
-                jsl.sinkFor(import('./topics/'+topicid),(source,error,module)=>module.TOPIC())
+            ARTICLE( {class:'article'},
+                jsl.sinkFor(jslHashChange,null,(source,topicid="intro.js")=>
+                    jsl.sinkFor(import('./topics/'+topicid),(source,error,module)=>module.TOPIC())
+                )
             )
         ),
         FOOTER({class: 'footer'},
-            P('© 2024 JSL'),
-            A({href: 'https://github.com'}, IMG({src: 'github-icon.png', alt: 'GitHub'})),
-            A({href: 'https://twitter.com'}, IMG({src: 'twitter-icon.png', alt: 'Twitter'})),
-            A({href: 'https://linkedin.com'}, IMG({src: 'linkedin-icon.png', alt: 'LinkedIn'}))
+            P('© 2020 Ambianti B.V.'),
+            A({href: 'https://github.com'}, IMG({src: './images/github.png', alt: 'GitHub'})),
+            A({href: 'https://twitter.com'}, IMG({src: './images/twitter.png', alt: 'Twitter'})),
+            A({href: 'https://linkedin.com'}, IMG({src: './images/linkedin.png', alt: 'LinkedIn'}))
         )
     ];
 </script>
 
 <style>
-    /* Basic page layout and styling */
     body, html {
         margin: 0;
         padding: 0;
         font-family: Arial, sans-serif;
-        height: 100vh;
         color: #333;
+        display: flex;
+        flex-direction: column;
+    }
+
+    a {
+        color: #708090;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: #ED1E79;
+    }
+
+    .content-container {
+        display: flex;
+        flex: 1;
+        padding-right: 60px;
+        padding-top: 80px;
+    }
+
+    .menu {
+        width: 750px; 
+        padding: 1em;
+        border-right: 1px solid #ccc;
+        text-decoration: none;
+        list-style: none;
+        text-decoration: none;
+    }
+
+    .article {
+        display: flex;
+    }
+
+    .sidebar{
+        display: grid;
+    }
+
+    .menu-li {
+        text-decoration: none;
+        color: #ED1E79;
+        margin-bottom: 20px;
+    }
+    .menu-ui{
+        text-decoration: none;
+        list-style: none;
+        padding: auto;
+        margin: auto;
     }
 
     .navbar {
         background-color: white;
-        padding: 1em;
         color: #708090;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        border-bottom: groove;
+        padding-left: 60px;
+        padding-right: 60px;
+        position: fixed;
+        top: 0;
+        width: 95%;
+    }
+
+    .navbar-logo{
+        display: flex;
+        justify-content: center;
+        align-items: center;    }
+
+    .navbar-logo img{
+        max-width: 60px;
     }
 
     .navbar h1 {
@@ -83,8 +157,18 @@
         left: 1em;
     }
 
-    .nav-links {
-        margin-left: auto; /* Push nav links to the right */
+    .navbar-links{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .navbar-links a {
+    margin-right: 20px; /* Add space between navbar links */
+    }
+
+    .navbar-links img{
+        max-width: 20px;
     }
     
     .content {
@@ -94,20 +178,21 @@
     }
 
     .content h1 {
+        margin-top: auto;
         font-size: 2em;
         margin-bottom: 0.5em;
     }
 
     .content h2 {
         margin-top: 1.5em;
-        color: #007bff;
+        color: #ED1E79;
     }
 
     .example {
         background-color: #f9f9f9;
         padding: 1em;
         margin: 1em 0;
-        border-left: 4px solid #007bff;
+        border-left: 4px solid #ED1E79;
         font-family: monospace;
     }
 
@@ -121,14 +206,25 @@
         background-color: white;
         color: #708090;
         text-align: center;
-        padding: 1em;
+        padding: 10px;
         bottom: 0;
-        width: 100%;
+        border-top: groove;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .footer img{
+        max-width: 30px;
+    }
+
+    .footer p{
+        margin: 0 20px;
     }
 
     .footer a {
         color: #708090;
-        margin: 0 10px;
+        margin: 0 20px;
         text-decoration: none;
     }
         
