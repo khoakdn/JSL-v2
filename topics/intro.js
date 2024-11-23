@@ -1,3 +1,7 @@
+function foo(){
+      return 1+i/3;          
+}
+
 export const TOPIC=()=>[
     SECTION({class: 'content'},
         H1('Introduction'),
@@ -19,7 +23,11 @@ export const TOPIC=()=>[
         DIV({class: 'example'}, "jsl=UL(LI('Item 1'), LI('Item 2'), LI('Item 3'));"),
 
         H2({id: 'api'}, 'API Reference'),
-        P('Explore the complete API reference for JSL, including tag functions and attributes.')
+        P('Explore the complete API reference for JSL, including tag functions and attributes.'),
+
+        CODE({class:'javascript-syntax'},
+            jsf.syntaxHighlight(foo,{})
+        )
     ),
     ASIDE(
         NAV({class: 'sidebar'},
